@@ -1,35 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Calculadora de Costo de Orden</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <title>Operaciones con Números</title>
 </head>
 <body>
-    <div class="form-container">
-        <h3>.::Bienvenido a su tienda de articulos</h3>
-        <label for="product-type">Seleccione el tipo de producto:</label>
-        <select id="product-type">
-            <option value="hielo">Hojas de Hielo Seco</option>
-            <option value="vigetas">Vigetas</option>
-            <option value="armazones">Armazones</option>
-        </select>
 
-        <label for="quantity">Cantidad Pedida:</label>
-        <input type="number" id="quantity" />
+    <div class="container">
+        <h1>Operaciones con Números</h1>
+        <label for="numerosInput">Ingrese Números (separados por comas):</label>
+        <input type="text" id="numerosInput" placeholder="Ejemplo: 1, 2, 3, -4, 5">
+        <button onclick="calcularOperaciones()">Calcular</button>
 
-        <label for="unit-price">Precio Unitario:</label>
-        <input type="number" id="unit-price" />
-
-        <label for="payment-type">Tipo de Pago:</label>
-        <select id="payment-type">
-            <option value="contado">Contado</option>
-            <option value="credito">Crédito</option>
-        </select>
-
-        <button id="calculate-button">Calcular Costo Total</button>
-
-        <div id="result" class="hidden">
-            <p>Costo Total de la Orden: <span id="total-cost"></span></p>
+        <div id="resultado">
+            <h2>Resultados:</h2>
+            <p>Promedio de Pares: <span id="promedioPares">-</span></p>
+            <p>Promedio de Impares: <span id="promedioImpares">-</span></p>
+            <p>Promedio de Positivos: <span id="promedioPositivos">-</span></p>
+            <p>Promedio de Negativos: <span id="promedioNegativos">-</span></p>
         </div>
     </div>
 

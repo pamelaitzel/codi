@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordenamiento de Números con Shellsort</title>
+    <title>Calculadora de Costo de Orden</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class = "container">
-    <h1>Ordenamiento de Números con Shellsort</h1>
-    <label for="inputNumbers">Ingrese números (separados por comas):</label>
-    <input type="text" id="inputNumbers">
-    <br>
-    <label for="orderType">Seleccione el orden:</label>
-    <select id="orderType">
-        <option value="ascendente">Ascendente</option>
-        <option value="descendente">Descendente</option>
-    </select>
-    <br>
-    <button onclick="sortNumbers()">Ordenar</button>
-    <div id="result"></div>
-  </div>
+    <div class="form-container">
+        <h3>.::Bienvenido a su tienda de articulos</h3>
+        <label for="product-type">Seleccione el tipo de producto:</label>
+        <select id="product-type">
+            <option value="hielo">Hojas de Hielo Seco</option>
+            <option value="vigetas">Vigetas</option>
+            <option value="armazones">Armazones</option>
+        </select>
+
+        <label for="quantity">Cantidad Pedida:</label>
+        <input type="number" id="quantity" />
+
+        <label for="unit-price">Precio Unitario:</label>
+        <input type="number" id="unit-price" />
+
+        <label for="payment-type">Tipo de Pago:</label>
+        <select id="payment-type">
+            <option value="contado">Contado</option>
+            <option value="credito">Crédito</option>
+        </select>
+
+        <button id="calculate-button">Calcular Costo Total</button>
+
+        <div id="result" class="hidden">
+            <p>Costo Total de la Orden: <span id="total-cost"></span></p>
+        </div>
+    </div>
+
     <script src="js/functions.js"></script>
 </body>
 </html>

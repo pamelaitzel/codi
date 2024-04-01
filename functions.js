@@ -1,44 +1,45 @@
-class Product {
-    constructor(name, discount, hasDiscount) {
-        this.name = name;
-        this.discount = discount;
-        this.hasDiscount = hasDiscount;
-    }
+// Definir el TDA para la colección de números
+function NumerosCollection(numerosInput) {
+    this.numerosArray = numerosInput.split(",").map(Number);
+}
 
-    calculateTotalCost(quantity, unitPrice, paymentType) {
-        let discount = this.hasDiscount ? this.discount : 0;
-        if (paymentType === "contado") {
-            discount += 0.07;
-        }
-        return quantity * unitPrice * (1 - discount);
-    }
-}
-if (productType===""||quantity===""||unitPrice===""||paymentType===""){
-    alert (" LLENE TODOS LOS CAMPOS REQUERIDOS PARA PODER CONTINUAR");
-    return;
-}
-const products = {
-    hielo: new Product("Hojas de Hielo Seco", 0.20, true),
-    vigetas: new Product("Vigetas", 0.15, true),
-    armazones: new Product("Armazones", 0, false),
+NumerosCollection.prototype.filtrarNumeros = function (filtro) {
+    return this.numerosArray.filter(filtro);
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-    const calculateButton = document.getElementById("calculate-button");
-    calculateButton.addEventListener("click", calculateCost);
+NumerosCollection.prototype.calcularPromedio = function (filtro) {
+    var arrayFiltrado = this.filtrarNumeros(filtro);
 
-    function calculateCost() {
-        const productType = document.getElementById("product-type").value;
-        const quantity = parseFloat(document.getElementById("quantity").value);
-        const unitPrice = parseFloat(document.getElementById("unit-price").value);
-        const paymentType = document.getElementById("payment-type").value;
-
-        const product = products[productType];
-        const totalCost = product.calculateTotalCost(quantity, unitPrice, paymentType);
-
-        const result = document.getElementById("result");
-        const totalCostElement = document.getElementById("total-cost");
-        totalCostElement.textContent = "$" + totalCost.toFixed(2);
-        result.classList.remove("hidden");
+    if (arrayFiltrado.length === 0) {
+        return 0;
     }
-});
+
+    var suma = arrayFiltrado.reduce((total, num) => total + num, 0);
+    return suma / arrayFiltrado.length;
+};
+
+// Función para manejar el botón de cálculo
+function calcularOperaciones() {
+    var numerosInput = document.getElementById("numerosInput").value;
+
+    // Crear una instancia de la colección de números
+    var numerosCollection = new NumerosCollection(numerosInput);
+
+    // Definir los filtros para las diferentes operaciones
+    var filtroPares = num => num % 2 === 0 && num !== 0;
+    var filtroImpares = num => num % 2 !== 0 && num !== 0;
+    var filtroPositivos = num => num > 0 && num !== 0;
+    var filtroNegativos = num => num < 0 && num !== 0;
+
+    // Calcular los promedios utilizando los métodos del TDA
+    var promedioPares = numerosCollection.calcularPromedio(filtroPares);
+    var promedioImpares = numerosCollection.calcularPromedio(filtroImpares);
+    var promedioPositivos = numerosCollection.calcularPromedio(filtroPositivos);
+    var promedioNegativos = numerosCollection.calcularPromedio(filtroNegativos);
+
+    // Actualizar el contenido HTML con los resultados
+    document.getElementById("promedioPares").textContent = promedioPares.toFixed(2);
+    document.getElementById("promedioImpares").textContent = promedioImpares.toFixed(2);
+    document.getElementById("promedioPositivos").textContent = promedioPositivos.toFixed(2);
+    document.getElementById("promedioNegativos").textContent = promedioNegativos.toFixed(2);
+}
